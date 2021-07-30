@@ -2,7 +2,7 @@ package LinkedList;
 
 public class LinkedList {
 
-  
+
 
   public ListNode reverse(ListNode head) {
     // Write your solution here
