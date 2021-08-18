@@ -1,19 +1,22 @@
 package MyTest;
 import java.util.*;
 
+// find all decode ways
+// DFS to solve this problem, each level consider two possiable ways, either decode 1 letter or 2 letters
+//
+//                                 1121
+//                                /   \
+//                              A121   K21
+//
 
 public class DFSDecode {
 
-  private  static Map<Integer, Character> map   ;
 
   public static void main(String[] args) {
-
-    List<String> result = decode("1121") ;
-
+    List<String> result = decode("1131") ;
     for (String s: result) {
       System.out.println( s );
     }
-
   }
 
 
@@ -23,6 +26,7 @@ public class DFSDecode {
     char[] array = input.toCharArray() ;
 
     StringBuilder buf = new StringBuilder() ;
+
     DFS(array, 0 , buf ,result) ;
 
     return result ;
@@ -33,21 +37,25 @@ public class DFSDecode {
       result.add( buf.toString() ) ;
       return ;
     }
+    if (input[index] != '0' ) {
 
-    DFS(input, index, buf, result);
+      buf.append( encode(input, index,   1)  ) ;
+      DFS(input, index + 1, buf, result);
+      buf.deleteCharAt(buf.length() - 1) ;
+    }
 
-    DFS(input, index, buf, result);
+    if ( input[index] != '0'  &&  index + 1 < input.length  && Integer.valueOf( new String(input, index,  2) ) <= 26  ) {
+      buf.append( encode(input, index,   2)  ) ;
+      DFS(input, index + 2, buf, result);
+      buf.deleteCharAt(buf.length() - 1) ;
+    }
+
   }
-//  private char encode(char[] input, int start, int end ) {
-//    if( map == null) {
-//
-//      for (int i = 1; i <= 26 ; i++) {
-//
-//      }
-//    }
 
-//    return map.get() ;
-//  }
+  private static char encode(char[] input, int start, int length ) {
+    int value  = Integer.valueOf( new String(input, start,  length ) );
+    return (char) ('A' + value - 1);
+  }
 
 }
 
