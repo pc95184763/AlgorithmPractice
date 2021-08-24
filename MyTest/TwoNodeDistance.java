@@ -12,8 +12,8 @@ public class TwoNodeDistance {
 
     int lengthA = distance(lca, a) ;
     int lengthB = distance(lca, b) ;
-
     return lengthA + lengthB ;
+
   }
 
   public int distance(TreeNode root, TreeNode target) {
