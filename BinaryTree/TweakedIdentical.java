@@ -15,4 +15,5 @@ public class TweakedIdentical {
     return isTweakedIdentical(one.left, two.left) && isTweakedIdentical(one.right, two.right) ||
         isTweakedIdentical(one.right, two.left) && isTweakedIdentical(one.left, two.right) ;
   }
+  
 }
