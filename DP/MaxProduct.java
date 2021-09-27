@@ -3,37 +3,50 @@ package DP;
 public class MaxProduct {
 
   public static void main(String[] args) {
-
-    System.out.println( maxProduct2(8) );
+    System.out.println( maxProductMemo(8) );
   }
-
-
-  public static int maxProduct1(int length) {
+  // DFS
+  public static int maxProductDFS(int length) {
     // Write your solution here
-    if ( length == 1) {
-      return 1;
+    if (length == 1) {
+      return 1 ;
     }
-    int globalMax= 0;
-    for ( int i = 1; i < length ; i ++) {
-      int cur = Math.max(maxProduct1(i), i )  ;
-      globalMax = Math.max( globalMax, cur * ( length - i ) ) ;
+    int[] M = new int[length] ;
+    int max = 0;
+    for (int i = length - 1; i >= 1 ; i--) {
+      int cur = Math.max(i, maxProductDFS(i) ) * ( length - i );
+      max = Math.max(max, cur) ;
     }
-    return globalMax;
+    return max ;
   }
 
-  public static int getMaxProduct(int n ) {
-    //Long base case
-    if ( n <= 1) {
-      return 0;
+  // Memorization
+  public static int maxProductMemo(int length) {
+    if (length == 0 || length == 1) {
+      return length ;
     }
-    int globalMax = 0;
-    for (int i = n - 1; i >= 1 ; i-- ) {
-      int best = Math.max( getMaxProduct(i), i ) ;
-
-      globalMax = Math.max( best * (n - i ) , globalMax );
-    }
-    return globalMax ;
+    int[] memo = new int[length + 1] ;
+    maxProductMemo(length, memo) ;
+    return memo[length] ;
   }
+  public static int maxProductMemo(int length, int [] memo) {
+    if (length == 0 || length == 1) {
+      return length ;
+    }
+    if ( memo[length] != 0) {
+      return memo[length] ;
+    }
+    int curMax = 0;
+    for (int i = length - 1 ; i >= 1 ; i--) {
+      int cur = Math.max(i, maxProductMemo(i, memo) ) * (length - i);
+      curMax = Math.max(curMax, cur) ;
+    }
+    memo[length] = curMax ;
+    return curMax ;
+  }
+
+
+  //DP
   public static int curRope(int n) {
     int[] M = new int[n + 1] ;
     M[0] = 0;
@@ -47,19 +60,6 @@ public class MaxProduct {
     }
     return M[n] ;
   }
-  public static int maxProduct2(int length) {
-    int[] M = new int[length + 1] ;
 
-    M[0] = 0;
-    M[1] = 0;
-    for (int i = 2; i <= length; i++) {
-      for ( int j = 1 ; j < i; j ++) {
-        int cur = Math.max(M[j], j ) * (i - j) ;
-        M[i] = Math.max(M[i], cur ) ;
-      }
-
-    }
-    return M[length] ;
-  }
 
 }

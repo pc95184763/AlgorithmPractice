@@ -4,15 +4,13 @@ import java.util.*;
 
 public class Quick {
 
-  public static void main(String [] args) {
-
-    int[] arr = new int[] {388,-304,304, 304, -304} ;
+  public static void main(String []args) {
+    int[ ]arr = new int[] {-500, -500, -498, -497, -496, 100,101, 88, -10} ;
     arr = quickSort(arr) ;
     for (int i : arr) {
-      System.out.print(i + " ") ;
+      System.out.println(i) ;
     }
   }
-
 
   public static int[] quickSort(int[] array) {
     // Write your solution here
@@ -28,24 +26,27 @@ public class Quick {
     if (left >= right) {
       return ;
     }
-    int pivot = left + rand.nextInt(right - left + 1) ;
+    int pivot = left + rand.nextInt( right - left + 1) ;
     sort(array, pivot, left, right) ;
     quickSort(array, rand, left, pivot - 1) ;
     quickSort(array, rand, pivot + 1, right) ;
+
   }
 
   private static void sort(int[] array, int pivot, int left, int right) {
+
     swap(array, pivot, right) ;
     int i = left ;
     int j = right - 1;
-    while (i <= j)  {
-      if (array[i] <= array[right] ) {
-        i ++ ;
-      } else {
-        swap(array, i, j--) ;
+    while ( i <= j) {
+      if ( array[i] <= array[right]) {
+        i++ ;
+      }
+      else {
+        swap(array, i, j--);
       }
     }
-    swap(array, right, i) ;
+    swap(array, i, right) ;
   }
 
   private static void swap(int[] array, int i, int j) {
@@ -53,5 +54,7 @@ public class Quick {
     array[i] = array[j] ;
     array[j] = temp ;
   }
+
+
 
 }
