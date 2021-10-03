@@ -6,7 +6,6 @@ public class SearchInShiftedSortedArrayWithDuplicate {
 
     int []  array = new int[] {1,1,2,1} ;
     System.out.println( search ( array, 2) );
-
   }
 
   public static int search(int[] array, int target) {
