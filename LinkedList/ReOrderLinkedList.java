@@ -4,7 +4,7 @@ public class ReOrderLinkedList {
 
   public static void main(String [] args) {
 
-    int[] arr = new int[] {293,16,83,960,430,215,369,813,343,927,480,263,797,885,408,146,895,677,994,673,116,1015,330,714,954,910,339,822,903} ;
+    int[] arr = new int[] {293,16,11} ;
     ListNode head = new ListNode(-1) ;
     ListNode cur = head ;
 
@@ -24,54 +24,45 @@ public class ReOrderLinkedList {
 
   public static ListNode reorder(ListNode head) {
     // Write your solution here
-    if (head == null || head.next == null) {
-      return head ;
+    if ( head == null || head.next == null) {
+      return head;
     }
-    ListNode mid = findMid(head) ;
-    ListNode right = mid.next ;
-    mid.next = null ;
-    ListNode left = head ;
-    right = reverse(right) ;
+    ListNode lastOfFirstHalf = findMid(head) ;
+    ListNode headerOfSecond = lastOfFirstHalf.next ;
+    lastOfFirstHalf.next = null ;
+    headerOfSecond = reverse(headerOfSecond) ;
 
-    ListNode dummy = new ListNode (-1) ;
-    ListNode curDummy =  dummy ;
 
-    while (left != null && right != null) {
-      curDummy.next = left ;
-      left = left.next ;
-      curDummy.next.next = right ;
-      right = right.next ;
-      curDummy = curDummy.next.next ;
+    ListNode dummy = new ListNode(-1) ;
+    ListNode cur = dummy;
+    while ( head != null && headerOfSecond != null) {
+      cur.next = head;
+      head = head.next ;
+      cur = cur.next ;
+      cur.next = headerOfSecond ;
+      headerOfSecond = headerOfSecond.next ;
+      cur = cur.next ;
     }
-    if ( left != null) {
-      curDummy.next = left ;
-    } else {
-      curDummy.next = right ;
+    if (head != null) {
+      cur.next = head ;
     }
     return dummy.next ;
   }
-
-  private static ListNode findMid(ListNode head) {
-    if ( head == null || head.next == null ) {
-      return head ;
-    }
-    ListNode fast = head ;
+  public static ListNode findMid(ListNode head) {
     ListNode slow = head ;
-    while ( fast != null && fast.next != null && fast.next.next != null) {
+    ListNode fast = head ;
+    while (fast != null && fast.next != null && fast.next.next != null) {
       slow = slow.next ;
       fast = fast.next.next ;
     }
     return slow ;
   }
 
-  private static ListNode reverse (ListNode head) {
-    if (head == null || head.next == null) {
-      return head;
-    }
+  public static ListNode reverse (ListNode head) {
     ListNode pre = null ;
-    while (head != null ) {
+    while ( head != null) {
       ListNode nxt = head.next ;
-      head.next = pre ;
+      head.next = pre;
       pre = head ;
       head = nxt ;
     }

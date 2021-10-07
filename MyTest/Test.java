@@ -1,27 +1,33 @@
 package MyTest;
 
 public class Test {
+  int money ;
+  static int age = 10 ;
+  public static void hello() {
+    int a = 10;
 
+    System.out.println( a);
+    System.out.println(age);
+    baballl();
+  Test t = new Test() ;
+    t.hahhaha();
+  }
+  public static void baballl() {
+    System.out.println("hello");
+  }
+  public   void hahhaha() {
+    System.out.println(money);
+    hello() ;
+
+  }
   public static void main(String[] args) {
 
 
-    System.out.println( decrypt("DGEO", 3) );
 
   }
 
-  public static String decrypt(String input, int k) {
 
-    k = k % 26 ;
-    StringBuilder sb = new StringBuilder() ;
-    for (int i = 0 ; i < input.length() ; i ++) {
-      if ( input.charAt(i) >= 'A' + k ) {
-        sb.append( (char) (input.charAt(i) - k) ) ;
-      } else {
-        sb.append( (char) (input.charAt(i) + 26 - k) ) ;
-      }
-    }
-    return sb.toString() ;
-  }
+
 
 
 }
