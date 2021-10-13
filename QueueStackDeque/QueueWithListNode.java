@@ -36,6 +36,7 @@ public class QueueWithListNode {
     size--;
     return res ;
   }
+
   public int size() {
     return size ;
   }
