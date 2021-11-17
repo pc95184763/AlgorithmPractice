@@ -6,13 +6,10 @@ import java.util.PriorityQueue;
 
 public class TestMain {
   public static void main(String[] ar){
-    PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>() ;
+    int[] arr = new int[] {38, -1,1,23,88} ;
+    MyHeapIm minHeap = new MyHeapIm(arr) ;
 
-    minHeap.offer(4) ;
-    minHeap.offer(5) ;
-    minHeap.offer(2) ;
-    minHeap.offer(3) ;
-    minHeap.offer(1) ;
+
     while (!minHeap.isEmpty()) {
       System.out.print(minHeap.poll() + " " ) ;
     }

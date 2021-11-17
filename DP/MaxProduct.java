@@ -3,21 +3,22 @@ package DP;
 public class MaxProduct {
 
   public static void main(String[] args) {
-    System.out.println( maxProductMemo(8) );
+
+    System.out.println( maxProductDFS(8) );
   }
   // DFS
   public static int maxProductDFS(int length) {
     // Write your solution here
-    if (length == 1) {
-      return 1 ;
+    if (length <= 1) {
+      return length ;
     }
-    int[] M = new int[length] ;
-    int max = 0;
-    for (int i = length - 1; i >= 1 ; i--) {
-      int cur = Math.max(i, maxProductDFS(i) ) * ( length - i );
-      max = Math.max(max, cur) ;
+    int globalMax = 0;
+    for (int i = 1; i < length ; i++) {
+      int best = Math.max(length - i, maxProductDFS(length - i) );
+      int cur = best * i ;
+      globalMax = Math.max(globalMax, cur) ;
     }
-    return max ;
+    return globalMax ;
   }
 
   // Memorization

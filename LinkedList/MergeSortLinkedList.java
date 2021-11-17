@@ -3,9 +3,9 @@ package LinkedList;
 public class MergeSortLinkedList {
 
   public static void main(String[] args) {
-      ListNode p1 = new ListNode(5) ;
-    ListNode p2 = new ListNode(3) ;
-    ListNode p3 = new ListNode(2) ;
+      ListNode p1 = new ListNode(81) ;
+    ListNode p2 = new ListNode(82) ;
+    ListNode p3 = new ListNode(92) ;
     p1.next = p2 ;
     p2.next = p3 ;
 
@@ -14,6 +14,7 @@ public class MergeSortLinkedList {
       System.out.println(p1.value);
       p1 = p1.next ;
     }
+
   }
 
 
@@ -38,7 +39,7 @@ public class MergeSortLinkedList {
     }
     ListNode slow = head ;
     ListNode fast = head ;
-    while (fast != null && fast.next != null && fast.next.next != null) {
+    while (fast != null && fast.next != null && fast.next != null) {
       fast = fast.next.next ;
       slow = slow.next ;
     }

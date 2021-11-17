@@ -8,7 +8,6 @@ public class ALLSubset {
     for (String i: result){
       System.out.print(i + " ") ;
     }
-
   }
 
 
@@ -28,10 +27,12 @@ public class ALLSubset {
       result.add( builder.toString() ) ;
       return ;
     }
-    builder.append(set.charAt(index));
+
     DFS(set, index + 1, builder, result ) ;
-    builder.deleteCharAt(builder.length() - 1) ;
+
+    builder.append( set.charAt(index) ) ;
     DFS(set, index + 1, builder, result ) ;
+
   }
 
 

@@ -1,5 +1,8 @@
 package MyTest;
 
+import java.util.Arrays;
+import java.util.PriorityQueue;
+
 public class Test {
   int money ;
   static int age = 10 ;
@@ -18,12 +21,6 @@ public class Test {
   public   void hahhaha() {
     System.out.println(money);
     hello() ;
-
-  }
-  public static void main(String[] args) {
-
-
-
   }
 
 
